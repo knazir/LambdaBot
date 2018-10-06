@@ -1,0 +1,36 @@
+{
+  "name": "lambda-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot for the MapleStory 2 guild Lambda",
+  "main": "bot.js",
+  "scripts": {
+    "start": "nodemon bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knazir/LambdaBot.git"
+  },
+  "keywords": [
+    "maplestory",
+    "2",
+    "discord",
+    "bot",
+    "lambda"
+  ],
+  "author": "Kashif Nazir (knazir)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/knazir/LambdaBot/issues"
+  },
+  "homepage": "https://github.com/knazir/LambdaBot#readme",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "dotenv": "^5.0.1",
+    "mongodb": "^2.2.36",
+    "node-fetch": "^2.2.0",
+    "nodemon": "^1.18.3",
+    "simple-bot-discord": "^1.5.2",
+    "util": "^0.11.0"
+  }
+}
