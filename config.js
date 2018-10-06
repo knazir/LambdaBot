@@ -19,7 +19,10 @@ const config = {
   },
 
   // misc
-  WELCOME_IMG_URL: "https://i.imgur.com/DMNx7BZ.png"
+  WELCOME: {
+    EMBED_COLOR: 16030530,
+    IMG_URL: "https://i.imgur.com/DMNx7BZ.png"
+  }
 };
 
 module.exports = config;

@@ -127,9 +127,9 @@ bot.addCommand("test", message => {
 function welcome(member) {
   const message = "Please tag **@Lambda** or **@Alpha** and post your in-game name here!";
   const embed = new Discord.RichEmbed()
-    .setColor(2215814)
+    .setColor(config.WELCOME.EMBED_COLOR)
     .addField(`Welcome to Lambda!`, message)
-    .setImage(config.WELCOME_IMG_URL);
+    .setImage(config.WELCOME.IMG_URL);
   bot.channels.welcome.send(`Hi ${member}!`);
   bot.channels.welcome.send(embed);
 }
