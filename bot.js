@@ -142,7 +142,7 @@ const mapleNewsAggregator = new NewsFeedAggregator({
   bot: bot
 }).start();
 
-bot.addCommand("news", _ => mapleNewsAggregator.fetch());
+bot.addCommand("news", _ => mapleNewsAggregator.fetch(), { requiresRole: bot.roles.tryhard });
 
 //////////////// Event Handlers ////////////////
 
