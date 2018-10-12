@@ -1,11 +1,15 @@
 "use strict";
 
 require("dotenv").config();
+
 const Discord = require("discord.js");
+
 const { Bot, Role } = require("simple-bot-discord");
+const { MongoDb } = require("simple-bot-discord/modules");
 
 const config = require("./config");
 const Logger = require("./modules/Logger");
+const NewsFeedAggregator = require("./modules/NewsFeedAggregator");
 
 const bot = new Bot({
   name: "CasualBot",
@@ -16,6 +20,12 @@ const bot = new Bot({
 });
 
 //////////////// Modules ////////////////
+
+bot.addModule(new MongoDb({
+  databaseUrl: process.env.MONGODB_URI,
+  databaseName: process.env.MONGODB_DATABASE_NAME,
+  collections: ["logs", "config", "mapleNews"]
+}));
 
 bot.addModule(new Logger({
   auditChannelName: "audit"
@@ -35,14 +45,12 @@ bot.setRoles({
 //////////////// Channels ////////////////
 
 bot.setChannels({
-  welcome: config.CHANNELS.WELCOME,
+  audit: config.CHANNELS.AUDIT,
   goodbye: config.CHANNELS.GOODBYE,
-  audit: config.CHANNELS.AUDIT
+  mapleNews: config.CHANNELS.MAPLE_NEWS,
+  test: config.CHANNELS.TEST,
+  welcome: config.CHANNELS.WELCOME,
 });
-
-//////////////// In-Memory Storage ////////////////
-
-const intervals = new Set();
 
 //////////////// Admin Commands ////////////////
 
@@ -118,9 +126,23 @@ bot.addCommand("ping", message => {
 bot.addCommand("test", message => {
   switch (message.tokens[0]) {
     case "welcome": welcome(message.author); break;
+    case "goodbye": goodbye(message.author); break;
     default: return;
   }
 });
+
+//////////////// News Feed ////////////////
+
+const mapleNewsAggregator = new NewsFeedAggregator({
+  url: config.NEWS_FEED.FEED_URL,
+  channelName: "mapleNews",
+  newsCollection: "mapleNews",
+  crontab: config.NEWS_FEED.FETCH_CRONTAB,
+  timezone: config.NEWS_FEED.TIMEZONE,
+  bot: bot
+}).start();
+
+bot.addCommand("news", _ => mapleNewsAggregator.fetch());
 
 //////////////// Event Handlers ////////////////
 
@@ -132,6 +154,14 @@ function welcome(member) {
     .setImage(config.WELCOME.IMG_URL);
   bot.channels.welcome.send(`Hi ${member}!`);
   bot.channels.welcome.send(embed);
+}
+
+function goodbye(member) {
+  let message = `${member} has left the server.`;
+  if (member.username && member.discriminator) {
+    message = `**${member.username}#${member.discriminator}** (${member}) has left the server.`;
+  }
+  bot.channels.goodbye.send(message);
 }
 
 bot.on(Bot.events.guildMemberAdd, welcome);

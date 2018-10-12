@@ -13,9 +13,18 @@ const config = {
 
   // channels
   CHANNELS: {
-    WELCOME: "497920448173178880",
+    AUDIT: "497940104049065984",
     GOODBYE: "497939386038747147",
-    AUDIT: "497940104049065984"
+    MAPLE_NEWS: "500405143561568276",
+    TEST: "497938373483298816",
+    WELCOME: "497920448173178880"
+  },
+
+  // news feed
+  NEWS_FEED: {
+    FEED_URL: "http://ftr.fivefilters.org/makefulltextfeed.php?summary=1&content=0&use_extracted_title=1&url=createfeed.fivefilters.org%2Fextract.php%3Furl%3Dmaplestory2.nexon.net%252Fen%252Fnews%26in_id_or_class%3Dnews-item%26url_contains%3D",
+    FETCH_CRONTAB: "*/30 * * * *",
+    TIMEZONE: "America/Los_Angeles"
   },
 
   // misc

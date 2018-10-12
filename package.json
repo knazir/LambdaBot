@@ -25,12 +25,15 @@
   },
   "homepage": "https://github.com/knazir/LambdaBot#readme",
   "dependencies": {
+    "cron": "^1.4.1",
     "discord.js": "^11.3.2",
     "dotenv": "^5.0.1",
+    "feedme": "^1.2.0",
     "mongodb": "^2.2.36",
     "node-fetch": "^2.2.0",
     "nodemon": "^1.18.3",
     "simple-bot-discord": "^1.5.2",
+    "url-metadata": "^2.1.7",
     "util": "^0.11.0"
   }
 }
