@@ -8,10 +8,10 @@ const config = require("./config");
 const Logger = require("./modules/Logger");
 
 const bot = new Bot({
-  name: "LambdaBot",
+  name: "CasualBot",
   commandPrefix: "?",
   optionsPrefix: "--",
-  activityMessage: "Welcome to Lambda!",
+  activityMessage: "Welcome to FilthyCasuals!",
   discordToken: process.env.DISCORD_TOKEN
 });
 
@@ -24,12 +24,12 @@ bot.addModule(new Logger({
 //////////////// Roles ////////////////
 
 bot.setRoles({
-  lambda: new Role("Lambda", config.ROLES.LAMBDA, true),
-  alpha: new Role("Alpha", config.ROLES.ALPHA, true),
-  beta: new Role("Beta", config.ROLES.BETA, false),
-  gamma: new Role("Gamma", config.ROLES.GAMMA),
-  delta: new Role("Delta", config.ROLES.DELTA),
-  intern: new Role("Intern", config.ROLES.INTERN)
+  tryhard: new Role("Tryhard", config.ROLES.TRYHARD, true),
+  monkey: new Role("Monkey", config.ROLES.MONKEY, true),
+  casual: new Role("Casual", config.ROLES.CASUAL, false),
+  degenerate: new Role("Degenerate", config.ROLES.DEGENERATE),
+  scrub: new Role("Scrub", config.ROLES.SCRUB),
+  pleb: new Role("Pleb", config.ROLES.PLEB)
 });
 
 //////////////// Channels ////////////////
@@ -52,7 +52,7 @@ bot.addCommand("restart", async message => {
   message.channel.send("Successfully restarted!");
 }, {
   description: "Restarts the bot",
-  requiresRole: bot.roles.lambda,
+  requiresRole: bot.roles.tryhard,
   useLogger: true
 });
 
@@ -64,7 +64,7 @@ bot.addCommand("purge", async message => {
 }, {
   description: "Removes a given number of messages from the current channel.",
   usage: "<number of messages>",
-  requiresRole: bot.roles.lambda
+  requiresRole: bot.roles.tryhard
 });
 
 const env = bot.addCommand("env", message => {
@@ -72,7 +72,7 @@ const env = bot.addCommand("env", message => {
 }, {
   description: "Allows interacting with environment variables from the current bot instance.",
   usage: "<get> | <set>",
-  requiresRole: bot.roles.lambda,
+  requiresRole: bot.roles.tryhard,
   useLogger: true
 });
 
@@ -125,10 +125,10 @@ bot.addCommand("test", message => {
 //////////////// Event Handlers ////////////////
 
 function welcome(member) {
-  const message = "Please tag **@Lambda** or **@Alpha** and post your in-game name here!";
+  const message = "Please tag **@Tryhard** or **@Monkey** and post your in-game name here!";
   const embed = new Discord.RichEmbed()
     .setColor(config.WELCOME.EMBED_COLOR)
-    .addField(`Welcome to Lambda!`, message)
+    .addField(`Welcome to FilthyCasuals!`, message)
     .setImage(config.WELCOME.IMG_URL);
   bot.channels.welcome.send(`Hi ${member}!`);
   bot.channels.welcome.send(embed);
