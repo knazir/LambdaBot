@@ -36,12 +36,16 @@ module.exports = class NewsFeedAggregator extends Module {
   }
 
   _createFeedParser() {
-    const parser = new FeedMe();
-    parser.on("item", async item => {
-      const { title, link, description } = item;
-      const metadata = await urlMetadata(link);
-      if (await this._isNew(item)) {
-        this._postToChannel(this._parseTitle(title), link, description, metadata["og:image"]);
+    const parser = new FeedMe(true);
+    parser.on("end", async () => {
+      const parsedResponse = parser.done();
+      if (!parsedResponse || !parsedResponse.items) return;
+      for (const item of parsedResponse.items.reverse()) {
+        const { title, link, description } = item;
+        const metadata = await urlMetadata(link);
+        if (await this._isNew(item)) {
+          this._postToChannel(this._parseTitle(title), link, description, metadata["og:image"]);
+        }
       }
     });
     return parser;

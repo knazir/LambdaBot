@@ -22,7 +22,7 @@ const config = {
 
   // news feed
   NEWS_FEED: {
-    FEED_URL: "http://ftr.fivefilters.org/makefulltextfeed.php?summary=1&content=0&use_extracted_title=1&url=createfeed.fivefilters.org%2Fextract.php%3Furl%3Dmaplestory2.nexon.net%252Fen%252Fnews%26in_id_or_class%3Dnews-item%26url_contains%3D%26order%3Dreverse",
+    FEED_URL: "http://ftr.fivefilters.org/makefulltextfeed.php?summary=1&content=0&use_extracted_title=1&url=createfeed.fivefilters.org%2Fextract.php%3Furl%3Dmaplestory2.nexon.net%252Fen%252Fnews%26in_id_or_class%3Dnews-item%26url_contains%3D",
     FETCH_CRONTAB: "*/30 * * * *",
     TIMEZONE: "America/Los_Angeles"
   },
