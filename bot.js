@@ -11,7 +11,7 @@ const bot = new Bot({
   name: "CasualBot",
   commandPrefix: "?",
   optionsPrefix: "--",
-  activityMessage: "Welcome to FilthyCasuals!",
+  activityMessage: "Welcome to Filthy Casuals!",
   discordToken: process.env.DISCORD_TOKEN
 });
 
@@ -128,7 +128,7 @@ function welcome(member) {
   const message = "Please tag **@Tryhard** or **@Monkey** and post your in-game name here!";
   const embed = new Discord.RichEmbed()
     .setColor(config.WELCOME.EMBED_COLOR)
-    .addField(`Welcome to FilthyCasuals!`, message)
+    .addField(`Welcome to Filthy Casuals!`, message)
     .setImage(config.WELCOME.IMG_URL);
   bot.channels.welcome.send(`Hi ${member}!`);
   bot.channels.welcome.send(embed);
