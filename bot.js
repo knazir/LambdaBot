@@ -151,7 +151,7 @@ function welcome(member) {
   const embed = new Discord.RichEmbed()
     .setColor(config.WELCOME.EMBED_COLOR)
     .addField(`Welcome to Filthy Casuals!`, message)
-    .setImage(config.WELCOME.IMG_URL);
+    .setThumbnail(config.WELCOME.IMG_URL);
   bot.channels.welcome.send(`Hi ${member}!`);
   bot.channels.welcome.send(embed);
 }
